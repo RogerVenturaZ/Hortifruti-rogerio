@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+{% block conteudo %}
+<style>
+    .sidebar h2 {
+        color: var(--primary-color);
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .sidebar ul li {
+        margin-bottom: 1rem;
+    }
+
+    .sidebar ul li a {
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+
+    .sidebar ul li a:hover {
+        text-decoration: underline;
+        color: var(--primary-color);
+    }
+</style>
+<div class="main-content">
+    <aside class="sidebar">
+        <h2>Selecionar Tipo de Produto</h2>
+        <ul>
+            <li><a href="#frutas">Frutas</a></li>
+            <li><a href="#legumes">Legumes</a></li>
+            <li><a href="#verduras">Verduras</a></li>
+        </ul>
+    </aside>
+    <section class="products">
+        <div id="frutas" class="container">
+            <h2>Frutas</h2>
+            <div class="product-grid">
+                {% for produto in produtos %}
+                    {% if produto.tipo == 'Frutas' %}
+                        <div class="product-card {% if query and produto in produtos_filtrados %}highlight{% endif %}">
+                            <img class="rogerio" src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+                            <h3>Nome: {{ produto.nome }}</h3>
+                            <p>Tipo: {{ produto.get_tipo_display }}</p>
+                            <span>R$ {{ produto.preco }}</span>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="verduras" class="container mt-4">
+            <h2>Verduras</h2>
+            <div class="product-grid">
+                {% for produto in produtos %}
+                    {% if produto.tipo == 'Verduras' %}
+                        <div class="product-card {% if query and produto in produtos_filtrados %}highlight{% endif %}">
+                            <img class="rogerio" src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+                            <h3>Nome: {{ produto.nome }}</h3>
+                            <p>Tipo: {{ produto.get_tipo_display }}</p>
+                            <span>R$ {{ produto.preco }}</span>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="legumes" class="container mt-4">
+            <h2>Legumes</h2>
+            <div class="product-grid">
+                {% for produto in produtos %}
+                    {% if produto.tipo == 'Legumes' %}
+                        <div class="product-card {% if query and produto in produtos_filtrados %}highlight{% endif %}">
+                            <img class="rogerio" src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+                            <h3>Nome: {{ produto.nome }}</h3>
+                            <p>Tipo: {{ produto.get_tipo_display }}</p>
+                            <span>R$ {{ produto.preco }}</span>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock conteudo %}

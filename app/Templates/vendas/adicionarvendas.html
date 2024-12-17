@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block conteudo %}
+    <main> 
+        <form method="post" class="adicionar-rogerio">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="btn btn-success adicionar-rogerio-btn mt-2">Adicionar Vendas</button>
+        </form>
+    </main>
+{% endblock conteudo %}

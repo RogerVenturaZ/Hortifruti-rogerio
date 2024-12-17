@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+    <main>
+
+        <a class="adicionar-rogerio btn btn-success mb-3" href="/adicionaritensdevenda">Adicionar Itens de Vendas</a>
+        <section class="products">
+            <h2 id="frutas">Itens de Vendas</h2>
+            {% if produtos %}
+            <div class="product-grid">
+                {% for intensdevenda in itensdevendas %}
+                <div class="product-card">
+                    {% comment %} a tabela produto não tem um campo imagem {% endcomment %}
+                    {% comment %} <img src="" alt="Produto 1"> {% endcomment %}
+                    <h3>{{itensdevendas.nomeproduto}}</h3>
+                    <p>{{itensdevendas.preco}}</p>
+                    <p>{{itensdevendas.quantidade}}</p>
+                    <p>{{itensdevendas.categoria}}</p>
+                    <p>{{itensdevendas.disponibilidadedeestoque}}</p>
+                    <a class="modificar-rogerio btn btn-warning mb-1" href="/modificaritensdevenda/{{intensdevendas.id}}">Modificar</a>
+                    <a class="excluir-rogerio btn btn-danger" href="/excluiritensdevenda/{{itensdevendas.id}}">Excluir</a>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div>
+                <p>não ha itens de vendas disponiveis</p>
+            </div>
+            {% endif %}
+        </section>
+    </main>
+{% endblock conteudo %}

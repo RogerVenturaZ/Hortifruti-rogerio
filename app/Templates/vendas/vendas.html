@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<main>
+    <a class="adicionar-rogerio btn btn-success mb-3" href="{% url 'AdicionarVendas' %}">Adicionar Vendas</a>
+    <section class="products">
+        <h2 id="vendas">Vendas</h2>
+        <div class="product-grid">
+            {% for venda in vendas %}
+            <div class="product-card">
+                <h3>Venda realizada por: {{ venda.nome }}</h3>
+                <p>Usuário: {{ venda.usuario.username }}</p>
+                <p>Tipo de Venda: {{ venda.tipovenda.produto.tipo }}</p>
+                <p>Produto: {{ venda.produto.nome }}</p>
+                <p>Quantidade: {{ venda.quantidade }}</p>
+                <p>Valor Unitário: R$ {{ venda.valor }}</p>
+                <p>Pagamento: R$ {{ venda.pagamento }}</p>
+                <p>Total: R$ {{ venda.total }}</p>
+                <p>Troco: R$ {{ venda.troco }}</p>
+                <p>Data da Venda: {{ venda.datavenda }}</p>
+                
+                <a class="modificar-rogerio btn btn-warning mb-1" href="{% url 'ModificarVendas' venda.id %}">Modificar</a>
+                <a class="excluir-rogerio btn btn-danger" href="{% url 'ExcluirVendas' venda.id %}">Excluir</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock conteudo %}

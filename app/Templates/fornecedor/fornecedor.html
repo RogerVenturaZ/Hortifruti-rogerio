@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+    <main>
+        {% comment %} novo {% endcomment %}
+        <a class="adicionar-rogerio btn btn-success mb-3"  href="/adicionarfornecedor">Adicionar Fornecedor</a>
+        <section class="forncects">
+            <h2 id="frutas">Fornecedor</h2>
+            <div class= "product-grid">
+                {% for fornecedor in fornecedores %}
+                <div class="product-card">
+                    {% comment %} a tabela produto não tem um campo imagem {% endcomment %}
+                    {% comment %} <img src="" alt="Produto 1"> {% endcomment %}
+                    <h3>{{fornecedor.nome}}</h3>
+                    <p>{{fornecedor.CPF}}</p>
+                    <p>{{fornecedor.email}}</p> 
+                    <p>{{fornecedor.endereco}}</p>
+                    <p>{{fornecedor.telefone}}</p>
+                    <p>{{fornecedor.cidade}}</p>
+                    {% comment %} a tabela produto nao tem um campo descrição {% endcomment %}
+                    {% comment %} <p>Descrição do produto 1</p> {% endcomment %}
+                    <a class="modificar-rogerio btn btn-warning mb-1" href="/modificarfornecedor/{{fornecedor.id}}">Modificar</a>
+                    <a class="excluir-rogerio btn btn-danger" href="/excluirfornecedor/{{fornecedor.id}}">Excluir</a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+    {% endblock conteudo %}

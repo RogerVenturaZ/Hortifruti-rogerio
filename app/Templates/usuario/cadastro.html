@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+        :root {
+            --leao: #4CAF50; /* Verde */
+            --tigre: #FF9800; /* Laranja */
+            --elefante: #F9FBE7; /* Fundo suave */
+            --pantera: #333; /* Texto */
+            --girafa: #E0E0E0; /* Borda */
+            --urso: #FFFFFF; /* Fundo dos inputs */
+            --papagaio: #FFD2D2; /* Fundo para mensagens de erro */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--elefante);
+            color: var(--pantera);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container-tigre {
+            background: var(--urso);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .container-tigre h2 {
+            color: var(--leao);
+            margin-bottom: 1rem;
+        }
+
+        .alerta-papagaio {
+            background-color: var(--papagaio);
+            color: #D8000C;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .input-girafa {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .input-girafa label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--pantera);
+            font-weight: 600;
+        }
+
+        .input-girafa input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--girafa);
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: var(--urso);
+        }
+
+        .input-girafa input::placeholder {
+            color: #aaa;
+        }
+
+        .botao-leao {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--leao);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .botao-leao:hover {
+            background-color: #388E3C; /* Tom mais escuro de verde */
+        }
+
+        .rodape-pantera {
+            margin-top: 1rem;
+        }
+
+        .rodape-pantera p {
+            margin: 0;
+            color: var(--pantera);
+        }
+
+        .rodape-pantera a {
+            color: var(--tigre);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .rodape-pantera a:hover {
+            text-decoration: underline;
+        }
+
+        .obrigatorio {
+            color: #D8000C;
+            font-size: 0.875rem;
+            margin-top: -0.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-tigre">
+        <h2>Cadastro</h2>
+        <!-- Formulário de cadastro -->
+        <form method="POST" action="{% url 'cadastro' %}">
+            {% csrf_token %}
+            <div class="input-girafa">
+                <label for="id_username">Nome de Usuário:</label>
+                <input type="text" name="username" id="id_username" placeholder="Digite seu nome de usuário">
+            </div>
+            <div class="input-girafa">
+                <label for="id_first_name">Primeiro Nome:</label>
+                <input type="text" name="first_name" id="id_first_name" placeholder="Digite seu primeiro nome">
+            </div>
+            <div class="input-girafa">
+                <label for="id_last_name">Último Nome:</label>
+                <input type="text" name="last_name" id="id_last_name" placeholder="Digite seu último nome">
+            </div>
+            <div class="input-girafa">
+                <label for="id_email">Email:</label>
+                <input type="email" name="email" id="id_email" placeholder="Digite seu email">
+            </div>
+            <div class="input-girafa">
+                <label for="id_password">Senha:</label>
+                <input type="password" name="password" id="id_password" placeholder="Digite sua senha">
+            </div>
+            <div class="input-girafa">
+                <label for="id_endereco">Endereço:</label>
+                <input type="text" name="endereco" id="id_endereco" placeholder="Digite seu endereço">
+            </div>
+            <div class="input-girafa">
+                <label for="id_telefone">Telefone:</label>
+                <input type="text" name="telefone" id="id_telefone" placeholder="Digite seu telefone">
+            </div>
+            <div class="input-girafa">
+                <label for="id_cidade">Cidade:</label>
+                <input type="text" name="cidade" id="id_cidade" placeholder="Digite sua cidade">
+            </div>
+            <input type="submit" class="botao-leao" value="Cadastrar">
+        </form>
+
+        <!-- Exibição de mensagens -->
+        {% if messages %}
+            <div class="alerta-papagaio">
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <!-- Rodapé -->
+        <div class="rodape-pantera">
+            <p>Já tem uma conta? <a href="{% url 'login' %}">Faça login aqui</a></p>
+        </div>
+    </div>
+</body>
+</html>

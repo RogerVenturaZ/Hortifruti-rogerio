@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+<h2>Modificar Produto</h2>
+<form method="post" enctype="multipart/form-data" class="modifique-rogerio">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar Alterações</button>
+</form>
+{% endblock conteudo %}

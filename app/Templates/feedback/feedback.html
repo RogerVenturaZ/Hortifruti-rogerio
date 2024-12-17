@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+    <main>
+
+        <a class="adicionar-rogerio btn btn-success mb-3" href="/adicionarfeedback">Adicionar Feedback</a>
+        <section class="products">
+            <h2 id="feedback">Feedback</h2>
+            {% if feedbacks %}
+            <div class="product-grid">
+                {% for feedback in feedbacks %}
+                <div class="product-card">
+                    <h3>Nome: {{ feedback.usuario.username }}</h3>
+                    <h3>Comentário: {{ feedback.comentarios }}</h3>
+                    <p>Avaliação: {{ feedback.get_avaliacoes_display }}</p>
+                    <a class="modificar-rogerio btn btn-warning mb-1" href="/modificarfeedback/{{ feedback.id }}">Modificar</a>
+                    <a  class="excluir-rogerio btn btn-danger"href="/excluirfeedback/{{ feedback.id }}">Excluir</a>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div>
+                <p>Não há feedbacks disponíveis</p>
+            </div>
+            {% endif %}
+        </section>
+    </main>
+{% endblock conteudo %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<main class="container mt-4">
+    <h2>Adicionar Perfil</h2>
+    <form method="post" class="adicionar-rogerio">
+        {% csrf_token %}
+        {{ form.as_p }} <!-- Corrigindo a renderização do formulário -->
+        <button type="submit" class="btn btn-success btn-block btn-lg mt-2">Adicionar Perfil</button>
+    </form>
+</main>
+{% endblock conteudo %}

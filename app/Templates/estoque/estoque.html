@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+    <main>
+
+        <a  class="adicionar-rogerio btn btn-success mb-3" href="/adicionarestoque">Adicionar Item ao Estoque</a>
+        <section class="estoque">
+            <h2 id="estoque">Estoque de Produtos</h2>
+            {% if estoques %}
+            <div class="estoque-grid">
+                {% for estoque in estoques %}
+                <div class="estoque-card">
+                    <h3>Produto: {{ estoque.produto.nome }}</h3>
+                    <p>Tipo: {{ estoque.produto.tipo }}</p>
+                    <p>Quantidade: {{ estoque.quantidade }}</p>
+                    <p>Fornecedor: {{ estoque.produto.idfornecedor.nome }}</p>
+                    <a class="modificar-rogerio btn btn-warning mb-1" href="/modificarestoque/{{ estoque.id }}">Modificar</a>
+                    <a class="excluir-rogerio btn btn-danger" href="/excluirestoque/{{ estoque.id }}">Excluir</a>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div>
+                <p>Não há itens de estoque disponíveis</p>
+            </div>
+            {% endif %}
+        </section>
+    </main>
+{% endblock conteudo %}

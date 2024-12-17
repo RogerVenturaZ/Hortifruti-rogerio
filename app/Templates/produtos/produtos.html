@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+<main>
+    <a class="adicionar-rogerio btn btn-success mb-3" href="/adicionarproduto">Adicionar Produto</a>
+    <section class="products">
+        <h2 id="frutas">Frutas, Legumes e Verduras</h2>
+        {% if produtos %}
+        <div class="product-grid">
+            {% for produto in produtos %}
+            <div class="product-card">
+                <img class="rogerio" src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+                <h3>Nome: {{ produto.nome }}</h3>
+                <p>Tipo: {{ produto.get_tipo_display }}</p>
+                <p>Quantidade: {{ produto.quantidade }}</p>
+                <span>R$ {{ produto.preco }}</span>
+                <a class="modificar-rogerio btn btn-warning mb-1" href="/modificarproduto/{{ produto.id }}">Modificar</a>
+                <a class="excluir-rogerio btn btn-danger" href="/excluirproduto/{{ produto.id }}">Excluir</a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div>
+            <p>Não há produtos disponíveis</p>
+        </div>
+        {% endif %}
+    </section>
+</main>
+{% endblock conteudo %}

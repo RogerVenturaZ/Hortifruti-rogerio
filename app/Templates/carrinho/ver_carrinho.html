@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carrinho de Compras</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f1a144;
+            color: #fff;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .btn-home {
+            background-color:  #17a507;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .btn-home:hover {
+            background-color:  #17a507;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 1rem;
+        }
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        a {
+            text-decoration: none;
+            color: #20cb07;
+        }
+        p {
+            font-weight: bold;
+            text-align: right;
+            margin: 1rem;
+        }
+        .btn-add, .btn-checkout, .btn-back {
+            display: block;
+            width: 200px;
+            margin: 2rem auto;
+            padding: 0.75rem;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .btn-add {
+            background-color: #20cb07;
+        }
+        .btn-add:hover {
+            background-color: #17a507;
+        }
+        .btn-checkout {
+            background-color: #f1a144;
+        }
+        .btn-checkout:hover {
+            background-color: #d18e3e;
+        }
+        .btn-back {
+            background-color:  #17a507;
+        }
+        .btn-back:hover {
+            background-color: #17a507;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="btn-home" href="{% url 'index' %}">Home</a>
+        <h1>Seu Carrinho de Compras</h1>
+    </header>
+    <ul>
+        {% for item in itens %}
+        <li>
+            {{ item.produto.nome }} - {{ item.quantidade }} x {{ item.produto.preco }} = {{ item.total_preco }}
+            <a href="{% url 'remover_do_carrinho' item.id %}">Remover</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <p>Total: {{ total }}</p>
+    <a class="btn-add" href="{% url 'adicionar_ao_carrinho' %}">Adicionar mais itens</a>
+    <a class="btn-checkout" href="{% url 'finalizar_compra' %}">Finalizar Compra</a>
+    <a class="btn-back" href="{% url 'index' %}">Voltar para Página Principal</a>
+</body>
+</html>
